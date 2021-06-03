@@ -1,12 +1,12 @@
-
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Constants from 'expo-constants';
+import React from "react";
+import Constants from "expo-constants";
+import { StyleSheet, Text, View } from "react-native";
+import TopBar from "./components/TopBar.js";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>hello I am here!</Text>
+      <Text>Hello I am there and you are here! aren't you</Text>
     </View>
   );
 }
@@ -14,6 +14,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight
+    marginTop: Constants.statusBarHeight,
   },
 });
