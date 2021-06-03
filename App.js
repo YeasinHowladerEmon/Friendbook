@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Constants from "expo-constants";
 import { Alert, StyleSheet, View } from "react-native";
 import axios from "axios";
 import TopBar from "./components/TopBar.js";
+import SwipeableImage from "./components/SwipeableImage.js";
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const swipesRef = useRef(null);
 
   async function fetchUsers() {
     try {
@@ -28,7 +31,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <TopBar />
-      <View style={styles.swipes}></View>
+      <View style={styles.swipes}>
+        {users.length > 1 && <SwipeableImage user={users[currentIndex]} />}
+      </View>
     </View>
   );
 }
