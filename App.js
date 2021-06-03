@@ -4,6 +4,7 @@ import { Alert, StyleSheet, View } from "react-native";
 import axios from "axios";
 import TopBar from "./components/TopBar.js";
 import SwipeableImage from "./components/SwipeableImage.js";
+import BottomBar from "./components/BottomBar";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -34,6 +35,7 @@ export default function App() {
       <View style={styles.swipes}>
         {users.length > 1 && <SwipeableImage user={users[currentIndex]} />}
       </View>
+      <BottomBar />
     </View>
   );
 }
