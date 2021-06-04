@@ -7,13 +7,13 @@ export default function BottomBar({ handleLikePress, handlePassPress }) {
     <View style={styles.container}>
       <View />
       <TouchableOpacity style={styles.button} onPress={handlePassPress}>
-        <FontAwesome name="times" size={27} color="#F06795"></FontAwesome>
+        <FontAwesome name="times" size={27} color="#red"></FontAwesome>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <FontAwesome
           name="heart"
           size={27}
-          color="#64EDCC"
+          color="#blue"
           onPress={handleLikePress}
         ></FontAwesome>
       </TouchableOpacity>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   button: {
     width: 50,
     height: 50,
-    backgroundColor: "white",
+    backgroundColor: "gray",
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
