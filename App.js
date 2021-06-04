@@ -5,6 +5,8 @@ import axios from "axios";
 import TopBar from "./components/TopBar.js";
 import SwipeableImage from "./components/SwipeableImage.js";
 import BottomBar from "./components/BottomBar";
+import Swipes from './components/Swipes'
+
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -29,15 +31,44 @@ export default function App() {
     fetchUsers();
   }, []);
 
+  function handleLike() {
+    console.log('like')
+    nextUser()
+  }
+
+  function handlePass() {
+    console.log('pass')
+    nextUser()
+  }
+
+  function nextUser() {
+    const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1
+    setCurrentIndex(nextIndex)
+  }
+
+
   return (
     <View style={styles.container}>
       <TopBar />
       <View style={styles.swipes}>
-        {users.length > 1 && <SwipeableImage user={users[currentIndex]} />}
+        {users.length > 1 &&
+          users.map(
+            (u, i) =>
+              currentIndex === i && (
+                <Swipes
+                  key={i}
+                  ref={swipesRef}
+                  currentIndex={currentIndex}
+                  users={users}
+                  handleLike={handleLike}
+                  handlePass={handlePass}
+                ></Swipes>
+              )
+          )}
       </View>
-      <BottomBar />
+      <BottomBar handleLikePress={handleLikePress} handlePassPress={handlePassPress} />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
