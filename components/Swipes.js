@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 })
 
-// export default React.forwardRef((props, ref) => <Swipes swipesRef={ref} {...props}></Swipes>)
+export default React.forwardRef((props, ref) => <Swipes swipesRef={ref} {...props}></Swipes>)

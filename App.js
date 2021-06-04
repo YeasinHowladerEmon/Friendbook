@@ -1,35 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
-import Constants from "expo-constants";
-import { Alert, StyleSheet, View } from "react-native";
-import axios from "axios";
-import TopBar from "./components/TopBar.js";
-import SwipeableImage from "./components/SwipeableImage.js";
-import BottomBar from "./components/BottomBar";
+import React, { useState, useEffect, useRef } from 'react'
+import { StyleSheet, View, Alert } from 'react-native'
+import Constants from 'expo-constants'
+import TopBar from './components/TopBar'
+import axios from 'axios'
+import BottomBar from './components/BottomBar'
 import Swipes from './components/Swipes'
 
-
 export default function App() {
-  const [users, setUsers] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const swipesRef = useRef(null);
+  const [users, setUsers] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const swipesRef = useRef(null)
 
   async function fetchUsers() {
     try {
-      const { data } = await axios.get(
-        "https://randomuser.me/api/?gender=female&results=50"
-      );
-      setUsers(data.results);
+      const { data } = await axios.get('https://randomuser.me/api/?gender=female&results=50')
+      setUsers(data.results)
     } catch (error) {
-      console.log(error);
-      Alert.alert("Error getting users", "", [
-        { text: "Retry", onPress: () => fetchUsers() },
-      ]);
+      console.log(error)
+      Alert.alert('Error getting users', '', [{ text: 'Retry', onPress: () => fetchUsers() }])
     }
   }
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers()
+  }, [])
 
   function handleLike() {
     console.log('like')
@@ -46,6 +40,12 @@ export default function App() {
     setCurrentIndex(nextIndex)
   }
 
+  function handleLikePress() {
+    swipesRef.current.openLeft()
+  }
+  function handlePassPress() {
+    swipesRef.current.openRight()
+  }
 
   return (
     <View style={styles.container}>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: 8,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 3,
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
   },
-});
+})
